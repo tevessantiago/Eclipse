@@ -43,6 +43,8 @@ public class Evalua_edad {
 			System.out.println("Cuidate.");
 			
 		}
+		
+		entrada.close();
 
 	}
 

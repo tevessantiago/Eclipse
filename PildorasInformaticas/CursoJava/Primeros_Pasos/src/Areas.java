@@ -61,6 +61,8 @@ public class Areas {
 			break;
 			
 		}	
+		
+		entrada.close();
 
 	}
 
