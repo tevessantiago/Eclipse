@@ -9,6 +9,7 @@ import java.util.*;
  * Se crea un constructor que recibe parametros por primera vez.
  * @author Santiago Teves
  * Se retoma en clase 39 para ver Sobrecarga de Constructores.
+ * En clase 42 se reutiliza esta clase pero aparece modificada.
  */
 
 public class Uso_Empleado {
@@ -31,12 +32,20 @@ public class Uso_Empleado {
 		System.out.println("Nombre: " + empleado3.dameNombre() + " Sueldo: " + empleado3.dameSueldo() + " Fecha de alta: " + empleado3.dameFechaContrato());
 		*/
 		
-		Empleado[] misEmpleados = new Empleado[4];
+		/* Empleados hasta clase 39
+		 * Empleado[] misEmpleados = new Empleado[4];
 		
 		misEmpleados[0] = new Empleado("Paco Gómez", 85000, 1990, 12, 17);
 		misEmpleados[1] = new Empleado("Ana López", 95000, 1995, 06, 02);
 		misEmpleados[2] = new Empleado("María Martín", 105000, 2002, 03, 15);
-		misEmpleados[3] = new Empleado("Antonio Fernandez");
+		misEmpleados[3] = new Empleado("Antonio Fernandez");*/
+		
+		Empleado[] misEmpleados = new Empleado[4];
+		
+		misEmpleados[0] = new Empleado("Ana", 30000, 2000, 07, 07);
+		misEmpleados[1] = new Empleado("Carlos", 50000, 1995, 06, 15);
+		misEmpleados[2] = new Empleado("Paco", 25000, 2005, 9, 25);
+		misEmpleados[3] = new Empleado("Antonio", 47500, 2009, 11, 9);
 		
 		/*
 		 * Forma normie.
@@ -80,6 +89,10 @@ class Empleado{ //Solamente una clase puede ser pública y solo una clase puede t
 		
 		altaContrato = calendario.getTime();
 		
+		++IdSiguiente;
+		
+		Id = IdSiguiente;
+		
 	}
 	
 	public Empleado(String nom) {
@@ -87,7 +100,7 @@ class Empleado{ //Solamente una clase puede ser pública y solo una clase puede t
 	}
 	
 	public String dameNombre() { //getter
-		return nombre;
+		return nombre + " Id: " + Id;
 	}
 	
 	public double dameSueldo() { //getter
@@ -109,6 +122,33 @@ class Empleado{ //Solamente una clase puede ser pública y solo una clase puede t
 	private String nombre;
 	private double sueldo;
 	private Date altaContrato;
+	private static int IdSiguiente;
+	private int Id;
+	
+	
+}
+
+class Jefatura extends Empleado{
+	
+	public Jefatura(String nom, double sue, int agno, int mes, int dia) {
+		
+		super(nom, sue, agno, mes, dia);
+		
+	}
+	
+	public void estableceIncentivo(double b) {
+		incentivo = b;		
+	}
+	
+	public double dameSueldo() { //Se sobreescribe el metodo del empleado.
+		
+		double sueldoJefe = super.dameSueldo();
+		
+		return sueldoJefe + incentivo;
+		
+	}
+	
+	private double incentivo;
 	
 	
 }
