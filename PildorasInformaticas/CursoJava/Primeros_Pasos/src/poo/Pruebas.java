@@ -23,10 +23,13 @@ public class Pruebas {
 		trabajador1.cambiaSeccion("RRHH");
 		//trabajador1.cambiaNombre("Maria"); //Esto no tiene sentido y no deberia suceder, hay que evitar que se pueda cambiar el nombre con final.
 		
-		System.out.println(trabajador1.devuelveDatos());
-		System.out.println(trabajador2.devuelveDatos());
-		System.out.println(trabajador3.devuelveDatos());
-		System.out.println(trabajador4.devuelveDatos());
+		System.out.println(trabajador1.devuelveDatos() + "\n"
+		+ trabajador2.devuelveDatos() + "\n"
+		+ trabajador3.devuelveDatos() + "\n"
+		+ trabajador4.devuelveDatos()
+		);
+		
+		System.out.println(Empleados.dameIdSiguiente());
 		
 
 	}
@@ -66,6 +69,12 @@ class Empleados{
 	public String devuelveDatos(){ //getter
 		
 		return "El nombre es: " + nombre + " y la sección es: " + seccion + " y el Id=" + id;
+		
+	}
+	
+	public static String dameIdSiguiente() {
+		
+		return "El idSiguiente es: " + idSiguiente;
 		
 	}
 	
