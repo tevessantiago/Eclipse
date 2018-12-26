@@ -5,11 +5,13 @@ import java.util.*;
 /**
  * Clase 33; 34 y 35
  * Unico fichero con todas las clases que necesita el programa
- * No se recomienda. No es una buena pr醕tica.
+ * No se recomienda. No es una buena pr谩ctica.
  * Se crea un constructor que recibe parametros por primera vez.
  * @author Santiago Teves
  * Se retoma en clase 39 para ver Sobrecarga de Constructores.
  * En clase 42 se reutiliza esta clase pero aparece modificada.
+ * Clase 43 Polimorfismo
+ * Enlazado Dinamico: La jvm es capaz en tiempo de ejecucion de saber a que metodo perteneciente a la subclase o superclase tiene que llamar.
  */
 
 public class Uso_Empleado {
@@ -19,9 +21,9 @@ public class Uso_Empleado {
 		/*
 		 * Aca se ve como hacer todo separado, noob.
 		 * 
-		Empleado empleado1 = new Empleado("Paco G髆ez", 85000, 1990, 12, 17);		
-		Empleado empleado2 = new Empleado("Ana L髉ez", 95000, 1995, 06, 02);		
-		Empleado empleado3 = new Empleado("Mar韆 Mart韓", 105000, 2002, 03, 15);
+		Empleado empleado1 = new Empleado("Paco G贸mez", 85000, 1990, 12, 17);		
+		Empleado empleado2 = new Empleado("Ana L贸pez", 95000, 1995, 06, 02);		
+		Empleado empleado3 = new Empleado("Mar铆a Mart铆n", 105000, 2002, 03, 15);
 		
 		empleado1.subeSueldo(5);
 		empleado2.subeSueldo(5);
@@ -35,17 +37,23 @@ public class Uso_Empleado {
 		/* Empleados hasta clase 39
 		 * Empleado[] misEmpleados = new Empleado[4];
 		
-		misEmpleados[0] = new Empleado("Paco G髆ez", 85000, 1990, 12, 17);
-		misEmpleados[1] = new Empleado("Ana L髉ez", 95000, 1995, 06, 02);
-		misEmpleados[2] = new Empleado("Mar韆 Mart韓", 105000, 2002, 03, 15);
+		misEmpleados[0] = new Empleado("Paco G贸mez", 85000, 1990, 12, 17);
+		misEmpleados[1] = new Empleado("Ana L贸pez", 95000, 1995, 06, 02);
+		misEmpleados[2] = new Empleado("Mar铆a Mart铆n", 105000, 2002, 03, 15);
 		misEmpleados[3] = new Empleado("Antonio Fernandez");*/
 		
-		Empleado[] misEmpleados = new Empleado[4];
+		Jefatura jefe_RRHH = new Jefatura("Santi", 55000, 2006, 9, 25);
+		
+		jefe_RRHH.estableceIncentivo(2570);
+		
+		Empleado[] misEmpleados = new Empleado[6];
 		
 		misEmpleados[0] = new Empleado("Ana", 30000, 2000, 07, 07);
 		misEmpleados[1] = new Empleado("Carlos", 50000, 1995, 06, 15);
 		misEmpleados[2] = new Empleado("Paco", 25000, 2005, 9, 25);
 		misEmpleados[3] = new Empleado("Antonio", 47500, 2009, 11, 9);
+		misEmpleados[4] = jefe_RRHH; //Polimorfismo en acci贸n. Principio de sustituci贸n. Por almacenar un objeto de una subclase.
+		misEmpleados[5] = new Jefatura("Mar铆a", 95000, 1999,5,26);
 		
 		/*
 		 * Forma normie.
@@ -61,14 +69,14 @@ public class Uso_Empleado {
 		}
 		*/
 		
-		//Forma pro, pero yo lo har韆 dentro de un solo forEach para esta situaci髇.
+		//Forma pro, pero yo lo har铆a dentro de un solo forEach para esta situaci贸n.
 		for(Empleado e: misEmpleados) {
 			e.subeSueldo(5);
 		}
 		
 		for(Empleado e: misEmpleados) {
 			System.out.println("Nombre: " + e.dameNombre()
-					+ " Sueldo: " + e.dameSueldo()
+					+ " Sueldo: " + e.dameSueldo() //Al llegar al indice de jefe, se comporta como una variable de tipo Jefatura y llama al m茅todo sobreescrito en la subclase. Enlazado Dinamico.
 					+ " Fecha de alta: " + e.dameFechaContrato());
 		}
 
@@ -77,7 +85,7 @@ public class Uso_Empleado {
 
 }
 
-class Empleado{ //Solamente una clase puede ser p鷅lica y solo una clase puede tener el m閠odo main dentro del mismo archivo java
+class Empleado{ //Solamente una clase puede ser p煤blica y solo una clase puede tener el m茅todo main dentro del mismo archivo java
 	
 	
 	public Empleado(String nom, double sue, int agno, int mes, int dia) {
