@@ -12,6 +12,8 @@ import java.util.*;
  * En clase 42 se reutiliza esta clase pero aparece modificada.
  * Clase 43 Polimorfismo
  * Enlazado Dinamico: La jvm es capaz en tiempo de ejecucion de saber a que metodo perteneciente a la subclase o superclase tiene que llamar.
+ * Clase 44 Casting. Clases y métodos final.
+ * Se puede utilizar final en un metodo para que no pueda sobreescribirse.
  */
 
 public class Uso_Empleado {
@@ -54,6 +56,11 @@ public class Uso_Empleado {
 		misEmpleados[3] = new Empleado("Antonio", 47500, 2009, 11, 9);
 		misEmpleados[4] = jefe_RRHH; //Polimorfismo en acción. Principio de sustitución. Por almacenar un objeto de una subclase.
 		misEmpleados[5] = new Jefatura("María", 95000, 1999,5,26);
+		
+		Jefatura jefa_Finanzas = (Jefatura) misEmpleados[5]; // Refundición/Casting
+		
+		jefa_Finanzas.estableceIncentivo(55000);
+		
 		
 		/*
 		 * Forma normie.
@@ -136,7 +143,7 @@ class Empleado{ //Solamente una clase puede ser pública y solo una clase puede 
 	
 }
 
-class Jefatura extends Empleado{
+final class Jefatura extends Empleado{ //Se utiliza la palabra final para detener la cadena de la herencia, no se pueden crear mas subclases.
 	
 	public Jefatura(String nom, double sue, int agno, int mes, int dia) {
 		
