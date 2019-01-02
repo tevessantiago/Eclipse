@@ -1,26 +1,58 @@
 package poo;
 
+/**
+ * Clase 46
+ * Clases Abstactas
+ * La clase abstracta es la que marca el diseÃ±o en la jerarquÃ­a de la herencia
+ * 
+ */
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Uso_Persona {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Persona[] lasPersonas = new Persona[2];
+		
+		lasPersonas[0] = new Empleado2("Luis Conde", 50000, 2009, 02, 25);
+		lasPersonas[1] = new Alumno("Ana Lopez", "Biologicas");
+		
+		for (Persona p : lasPersonas) {
+			System.out.println(p.dameNombre() + ", " + p.dameDescripcion());
+		}
+		
 
 	}
 
 }
 
-class Empleado2{ //Solamente una clase puede ser pública y solo una clase puede tener el método main dentro del mismo archivo java
+abstract class Persona{
+	
+	public Persona(String nom) {
+		nombre = nom;
+	}
+	
+	public String dameNombre() {
+		return nombre;
+	}
+	
+	public abstract String dameDescripcion(); //Se crea como abstracto ya que se desea devolver resultados diferentes segun la clase.
+	
+	private String nombre;
+	
+}
+
+class Empleado2 extends Persona{
 	
 	
 	public Empleado2(String nom, double sue, int agno, int mes, int dia) {
 		
-		nombre = nom;
+		super(nom);
+		
 		sueldo = sue;
 		
-		GregorianCalendar calendario = new GregorianCalendar(agno, mes-1, dia); //Se le pasa mes -1 porque arranca de Enero como 0. (Hubiese sido mejor poner +1 y pasarle los numeros de meses reales)
+		GregorianCalendar calendario = new GregorianCalendar(agno, mes-1, dia);
 		
 		altaContrato = calendario.getTime();
 		
@@ -28,6 +60,10 @@ class Empleado2{ //Solamente una clase puede ser pública y solo una clase puede 
 		
 		Id = IdSiguiente;
 		
+	}
+	
+	public String dameDescripcion() {
+		return "Este empleado tiene un Id = " + Id + " con un sueldo =" + sueldo;
 	}
 	
 	public double dameSueldo() { //getter
@@ -46,11 +82,26 @@ class Empleado2{ //Solamente una clase puede ser pública y solo una clase puede 
 		
 	}
 	
-	private String nombre;
 	private double sueldo;
 	private Date altaContrato;
 	private static int IdSiguiente;
 	private int Id;
 	
+}
+
+class Alumno extends Persona{
+	
+	public Alumno(String nom, String car) {
+		
+		super(nom);
+		carrera = car;
+		
+	}
+	
+	public String dameDescripcion() {
+		return "Este alumno esta estudiando la carrera de " + carrera;
+	}
+	
+	private String carrera;
 	
 }
