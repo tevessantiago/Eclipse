@@ -14,6 +14,8 @@ import java.util.*;
  * Enlazado Dinamico: La jvm es capaz en tiempo de ejecucion de saber a que metodo perteneciente a la subclase o superclase tiene que llamar.
  * Clase 44 Casting. Clases y métodos final.
  * Se puede utilizar final en un metodo para que no pueda sobreescribirse.
+ * Se retoma en clase 49 para ver Interfaces I predefinidas
+ * Se desea que aparezcan todos los empleados ordenados por sueldo de menor a mayor utilizando Arrays.sort
  */
 
 public class Uso_Empleado {
@@ -81,6 +83,8 @@ public class Uso_Empleado {
 			e.subeSueldo(5);
 		}
 		
+		Arrays.sort(misEmpleados); // Para usar el sort de un array de objetos, la clase a la que pertenece el array tiene que implementar Comparable
+		
 		for(Empleado e: misEmpleados) {
 			System.out.println("Nombre: " + e.dameNombre()
 					+ " Sueldo: " + e.dameSueldo() //Al llegar al indice de jefe, se comporta como una variable de tipo Jefatura y llama al método sobreescrito en la subclase. Enlazado Dinamico.
@@ -92,7 +96,7 @@ public class Uso_Empleado {
 
 }
 
-class Empleado{ //Solamente una clase puede ser pública y solo una clase puede tener el método main dentro del mismo archivo java
+class Empleado implements Comparable{ //Solamente una clase puede ser pública y solo una clase puede tener el método main dentro del mismo archivo java
 	
 	
 	public Empleado(String nom, double sue, int agno, int mes, int dia) {
@@ -132,6 +136,21 @@ class Empleado{ //Solamente una clase puede ser pública y solo una clase puede t
 		
 		sueldo += aumento;
 		
+	}
+	
+	public int compareTo(Object miObjeto) { //Para implementar Comparable hay que sobreescribir el method compareTo
+		
+		Empleado otroEmpleado = (Empleado) miObjeto; //Se castea el objeto recibido por parametro a Empleado.
+		
+		if (this.sueldo < otroEmpleado.sueldo) {
+			return -1;
+		}
+		
+		if (this.sueldo > otroEmpleado.sueldo) {
+			return 1;
+		}
+		
+		return 0;
 	}
 	
 	private String nombre;
