@@ -16,6 +16,8 @@ import java.util.*;
  * Se puede utilizar final en un metodo para que no pueda sobreescribirse.
  * Se retoma en clase 49 para ver Interfaces I predefinidas
  * Se desea que aparezcan todos los empleados ordenados por sueldo de menor a mayor utilizando Arrays.sort
+ * Clase 50 interface propia
+ * 
  */
 
 public class Uso_Empleado {
@@ -63,6 +65,7 @@ public class Uso_Empleado {
 		
 		jefa_Finanzas.estableceIncentivo(55000);
 		
+		System.out.println(jefa_Finanzas.tomar_decisiones("Dar más días de vacaciones a los empleados"));
 		
 		/*
 		 * Forma normie.
@@ -162,12 +165,16 @@ class Empleado implements Comparable{ //Solamente una clase puede ser pública y 
 	
 }
 
-final class Jefatura extends Empleado{ //Se utiliza la palabra final para detener la cadena de la herencia, no se pueden crear mas subclases.
+final class Jefatura extends Empleado implements Jefes{ //Se utiliza la palabra final para detener la cadena de la herencia, no se pueden crear mas subclases.
 	
 	public Jefatura(String nom, double sue, int agno, int mes, int dia) {
 		
 		super(nom, sue, agno, mes, dia);
 		
+	}
+	
+	public String tomar_decisiones(String decision) {
+		return "Un miembro de la dirección ha tomado la decisión de: " + decision;
 	}
 	
 	public void estableceIncentivo(double b) {
