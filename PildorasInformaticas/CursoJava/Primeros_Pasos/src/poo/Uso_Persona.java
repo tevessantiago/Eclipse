@@ -3,7 +3,7 @@ package poo;
 /**
  * Clase 46
  * Clases Abstactas
- * La clase abstracta es la que marca el diseÃ±o en la jerarquÃ­a de la herencia
+ * La clase abstracta es la que marca el diseño en la jerarquía de la herencia
  * 
  */
 import java.util.Date;
