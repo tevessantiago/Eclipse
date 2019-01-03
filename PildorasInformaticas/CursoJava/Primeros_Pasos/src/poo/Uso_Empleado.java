@@ -17,6 +17,7 @@ import java.util.*;
  * Se retoma en clase 49 para ver Interfaces I predefinidas
  * Se desea que aparezcan todos los empleados ordenados por sueldo de menor a mayor utilizando Arrays.sort
  * Clase 50 interface propia
+ * Clase 51
  * 
  */
 
@@ -99,7 +100,7 @@ public class Uso_Empleado {
 
 }
 
-class Empleado implements Comparable{ //Solamente una clase puede ser pública y solo una clase puede tener el método main dentro del mismo archivo java
+class Empleado implements Comparable, Trabajadores{ //Solamente una clase puede ser pública y solo una clase puede tener el método main dentro del mismo archivo java
 	
 	
 	public Empleado(String nom, double sue, int agno, int mes, int dia) {
@@ -115,6 +116,10 @@ class Empleado implements Comparable{ //Solamente una clase puede ser pública y 
 		
 		Id = IdSiguiente;
 		
+	}
+	
+	public double establece_bonus(double gratificacion) {
+		return Trabajadores.bonus_base + gratificacion;
 	}
 	
 	public Empleado(String nom) {
@@ -175,6 +180,14 @@ final class Jefatura extends Empleado implements Jefes{ //Se utiliza la palabra 
 	
 	public String tomar_decisiones(String decision) {
 		return "Un miembro de la dirección ha tomado la decisión de: " + decision;
+	}
+	
+	public double establece_bonus(double gratificacion) {
+		
+		double prima = 2000;
+		
+		return Trabajadores.bonus_base + gratificacion + prima;
+		
 	}
 	
 	public void estableceIncentivo(double b) {
