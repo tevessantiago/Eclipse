@@ -4,10 +4,10 @@
  */
 package poo;
 
+import java.awt.Toolkit;
 import java.awt.event.*;
-import java.util.*;
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
+import java.util.Date;
+import javax.swing.*;
 
 public class PruebaTemporizador {
 
@@ -35,6 +35,8 @@ class DameLaHora implements ActionListener{
 		Date ahora = new Date();
 		
 		System.out.println("Te pongo la hora cada 5 sg: " + ahora);
+		
+		Toolkit.getDefaultToolkit().beep(); //Hace un sonido el SO
 		
 		
 	}
