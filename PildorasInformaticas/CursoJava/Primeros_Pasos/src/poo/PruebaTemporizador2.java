@@ -2,6 +2,13 @@
  * 
  * Clase 53
  * Clases Internas
+ * Se crea la clase interna DameLaHora2
+ * Debe llevar el modificador de acceso private
+ * 
+ * Clase 54
+ * Clases Internas 2
+ * Se convierte la clase interna DamelaHora2 en una clase interna local (Dentro de un metodo)
+ * No debe llevar el modificador de acceso private
  * 
  */
 
@@ -18,9 +25,9 @@ public class PruebaTemporizador2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Reloj miReloj = new Reloj(3000, true);
+		Reloj miReloj = new Reloj();
 		
-		miReloj.enMarcha();
+		miReloj.enMarcha(3000, true);
 		
 		JOptionPane.showMessageDialog(null, "Pulse 'OK' para terminar.");
 		
@@ -32,41 +39,31 @@ public class PruebaTemporizador2 {
 
 class Reloj{
 	
-	public Reloj(int intervalo, boolean sonido) {
+	public void enMarcha(int intervalo, boolean sonido) {
 		
-		this.intervalo = intervalo;
-		this.sonido = sonido;
-		
-	}
-	
-	public void enMarcha() {
+		class DameLaHora2 implements ActionListener{
+			
+			public void actionPerformed(ActionEvent evento) {
+				
+				Date ahora = new Date();
+				
+				System.out.println("Te pongo la hora cada 3 sg: " + ahora);
+				
+				if(sonido) { //Está definido fuera de la clase y puede acceder aunque esté encapsulado.
+					
+					Toolkit.getDefaultToolkit().beep();
+					
+				}
+				
+			}
+			
+		}
 		
 		ActionListener oyente = new DameLaHora2();
 		
 		Timer miTemporizador = new Timer(intervalo, oyente);
 		
 		miTemporizador.start();
-		
-	}
-	
-	private int intervalo;
-	private boolean sonido;
-	
-	private class DameLaHora2 implements ActionListener{
-		
-		public void actionPerformed(ActionEvent evento) {
-			
-			Date ahora = new Date();
-			
-			System.out.println("Te pongo la hora cada 3 sg: " + ahora);
-			
-			if(sonido) { //Está definido fuera de la clase y puede acceder aunque esté encapsulado.
-				
-				Toolkit.getDefaultToolkit().beep();
-				
-			}
-			
-		}
 		
 	}
 	
