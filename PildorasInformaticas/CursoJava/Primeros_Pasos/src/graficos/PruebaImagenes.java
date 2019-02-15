@@ -1,3 +1,15 @@
+/**
+ * 
+ * Clase 63
+ * Vemos en este vídeo cómo incluir imágenes en un Frame. 
+ * Utilizamos las clases Image, ImageIO y Graphics
+ * 
+ * Clase 64
+ * Terminamos de ver el trabajo con imágenes en un Frame. 
+ * Vemos el método copyArea para copiar imágenes en un Frame.
+ * 
+ */
+
 package graficos;
 
 import java.awt.Color;
@@ -31,7 +43,7 @@ class MarcoImagen extends JFrame{
 	
 	public MarcoImagen() {
 		
-		setTitle("Prueba con Imagen");
+		setTitle("Marco con Imagen");
 		setBounds(750,300,300,200);
 		
 		LaminaConImagen milamina = new LaminaConImagen();
@@ -44,19 +56,38 @@ class MarcoImagen extends JFrame{
 
 class LaminaConImagen extends JPanel{
 	
-	public void paintComponent(Graphics g) {
-		
-		super.paintComponent(g);
+	public LaminaConImagen() {
 		
 		//File miimagen = new File("src/graficos/coche.png");
 		
 		try {
-			imagen = ImageIO.read(new File("src/graficos/coche.png"));
+			imagen = ImageIO.read(new File("src/graficos/bola.gif"));
 		} catch (IOException e) {
 			System.out.println("La imagen no se encuentra");
 		}
 		
-		g.drawImage(imagen, 5, 5, null);
+	}
+	
+	public void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+				
+		int anchuraImagen = imagen.getWidth(this);
+		int alturaImagen = imagen.getHeight(this);
+		
+		g.drawImage(imagen, 0, 0, null);
+		
+		for(int i = 0; i < 300; i++) {
+			
+			for(int j = 0; j < 200; j++) {
+				
+				if(i+j > 0)
+				
+				g.copyArea(0, 0, anchuraImagen, alturaImagen, i*anchuraImagen, j*alturaImagen);
+				
+			}
+			
+		}
 		
 	}
 	
