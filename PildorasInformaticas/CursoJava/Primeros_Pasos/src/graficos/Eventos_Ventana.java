@@ -4,6 +4,10 @@
  * Comenzamos a ver los eventos de ventana. 
  * Creamos un marco JFrame que responde a eventos.
  * 
+ * Clase 69
+ * En este vídeo vemos las clases adaptadoras y cómo estas simplifican notablemente el código del
+ * programa cuando trabajamos con interfaces con muchos métodos.
+ * 
  */
 
 package graficos;
@@ -44,58 +48,22 @@ class MarcoVentana extends JFrame{
 		setBounds(300,300,500,350);
 		setVisible(true);
 		
-		M_Ventana oyenteVentana = new M_Ventana();
+		//M_Ventana oyenteVentana = new M_Ventana();
 		
-		addWindowListener(oyenteVentana);
+		//addWindowListener(oyenteVentana);
+		
+		addWindowListener(new M_Ventana()); //Equivale a las dos lineas anteriores.
 		
 	}
 	
 }
 
-class M_Ventana implements WindowListener{
-
-	public void windowActivated(WindowEvent e) {
-		
-		System.out.println("Ventana activada.");
-		
-	}
-
-	public void windowClosed(WindowEvent e) {
-		
-		System.out.println("La ventana ha sido cerrada.");
-		
-	}
-
-	public void windowClosing(WindowEvent e) {
-		
-		System.out.println("Cerrando ventana.");
-		
-	}
-
-	public void windowDeactivated(WindowEvent e) {
-		
-		System.out.println("Ventana desactivada.");
-		
-	}
-
-	public void windowDeiconified(WindowEvent e) {
-		
-		System.out.println("Ventana restaurada.");
-		
-	}
+class M_Ventana extends WindowAdapter{
 
 	public void windowIconified(WindowEvent e) { //Al minimizar la ventana
 		
 		System.out.println("Ventana minimizada.");
 		
 	}
-
-	public void windowOpened(WindowEvent e) {
-		
-		System.out.println("Ventana abierta.");
-		
-	}
-	
-	
 	
 }
