@@ -7,6 +7,10 @@
  * Vemos con un ejemplo en acción a los eventos. 
  * Conseguimos que tres botones dentro de un Frame desencadenen una acción.
  * 
+ * Clase 67
+ * Vemos en este vídeo otra forma de enfocar el programa del vídeo anterior. 
+ * Utilizamos el concepto de clases internas para hacer que el programa funcione.
+ * 
  */
 
 package graficos;
@@ -45,7 +49,7 @@ class MarcoBotones extends JFrame{
 	
 }
 
-class LaminaBotones extends JPanel implements ActionListener{ //Objeto listener
+class LaminaBotones extends JPanel { //Objeto listener
 	
 	JButton botonAzul = new JButton("Azul"); //Objeto fuente
 	JButton botonAmarillo = new JButton("Amarillo");
@@ -57,26 +61,31 @@ class LaminaBotones extends JPanel implements ActionListener{ //Objeto listener
 		add(botonAmarillo);
 		add(botonRojo);
 		
-		botonAzul.addActionListener(this); //Objeto evento. "Al hacer click".
-		botonAmarillo.addActionListener(this);
-		botonRojo.addActionListener(this);
+		ColorFondo Amarillo = new ColorFondo(Color.YELLOW);
+		ColorFondo Azul = new ColorFondo(Color.BLUE);
+		ColorFondo Rojo = new ColorFondo(Color.RED);
+		
+		botonAzul.addActionListener(Azul);
+		botonAmarillo.addActionListener(Amarillo);
+		botonRojo.addActionListener(Rojo);
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	private class ColorFondo implements ActionListener{
 		
-		Object botonPulsado = e.getSource(); //Devuelve el objeto fuente que pulsó el boton
+		public ColorFondo(Color c) {
+			colorDeFondo = c;
+		}
 		
-		if(botonPulsado == botonAzul) {
-			setBackground(Color.BLUE);
+		public void actionPerformed(ActionEvent e) {
+			
+			setBackground(colorDeFondo);
+			
 		}
-		else if(botonPulsado == botonAmarillo) {
-			setBackground(Color.YELLOW);
-		}
-		else {
-			setBackground(Color.RED);
-		}
+		
+		private Color colorDeFondo;
 		
 	}
 	
 }
+
