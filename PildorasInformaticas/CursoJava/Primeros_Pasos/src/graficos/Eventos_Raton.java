@@ -34,13 +34,59 @@ class MarcoRaton extends JFrame{
 		
 		EventosDeRaton eventoRaton = new EventosDeRaton();
 		
-		addMouseListener(eventoRaton);
+		//addMouseListener(eventoRaton);
+		addMouseMotionListener(eventoRaton);
 		
 	}
 	
 }
 
-class EventosDeRaton implements MouseListener{ //O se puede extender de MouseAdapter para implementar solo los metodos necesarios.
+class EventosDeRaton implements MouseMotionListener{
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
+		System.out.println("Estás arrastrando");
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+
+		System.out.println("Estás moviendo");
+		
+	}
+	
+	
+	
+}
+	
+
+/*class EventosDeRaton extends MouseAdapter{
+	
+	/*public void mouseClicked(MouseEvent e) {
+		
+		//System.out.println("Coordenada X: " + e.getX() + "Coordenada Y: " + e.getY());
+		System.out.println(e.getClickCount());
+		
+	}*/
+	
+	/*public void mousePressed(MouseEvent e) {
+		
+		if(e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK) {
+			System.out.println("Has pulsado el boton izquierdo.");
+		}else if(e.getModifiersEx() == MouseEvent.BUTTON2_DOWN_MASK) {
+			System.out.println("Has pulsado la rueda del raton.");
+		}else if(e.getModifiersEx() == MouseEvent.BUTTON3_DOWN_MASK) {
+			System.out.println("Has pulsado el boton derecho.");
+		}
+		
+		
+	}
+	
+}*/
+
+/*class EventosDeRaton implements MouseListener{ //O se puede extender de MouseAdapter para implementar solo los metodos necesarios.
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -72,4 +118,4 @@ class EventosDeRaton implements MouseListener{ //O se puede extender de MouseAda
 	}
 	
 	
-}
+}*/
