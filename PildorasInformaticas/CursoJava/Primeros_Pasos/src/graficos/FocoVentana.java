@@ -1,3 +1,10 @@
+/**
+ * 
+ * Clase 75
+ * Terminamos en este vídeo el ejemplo del vídeo anterior y vemos como manejar eventos de foco
+ * con ventanas.
+ * 
+ */
 package graficos;
 
 import java.awt.event.WindowEvent;
